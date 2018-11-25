@@ -1,3 +1,16 @@
-test:
-  override:    
-    - mocha
+version: 2
+jobs:
+  build:
+    steps:
+      - checkout
+      - run: node index.js
+  test:
+    steps:
+      - checkout
+      - run: mocha test/test.js
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
